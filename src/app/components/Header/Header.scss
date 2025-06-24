@@ -1,0 +1,237 @@
+.Header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem 0;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+    max-width: 1200px;
+    position: relative;
+  }
+
+  &__logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #0070f3;
+    }
+  }
+
+  &__menuButton {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+    padding: 0.5rem;
+    z-index: 1001;
+  }
+
+  &__nav {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  &__link {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+    padding: 0.5rem 0;
+    position: relative;
+
+    &:hover {
+      color: #0070f3;
+    }
+
+    &--active {
+      color: #0070f3;
+      font-weight: 600;
+    }
+  }
+
+  &__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    backdrop-filter: blur(2px);
+    display: none;
+  }
+
+  .logout-container {
+    margin-left: 1.5rem;
+
+    .btn {
+      padding: 0.5rem 1rem;
+      background-color: #0070f3;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #005bb5;
+      }
+    }
+  }
+
+  // Mobile (320px - 767px)
+  @media (max-width: 767px) {
+    padding: 0.8rem 0;
+
+    &__container {
+      width: 95%;
+      padding: 0 0.5rem;
+    }
+
+    &__menuButton {
+      display: block;
+    }
+
+    &__nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 70%;
+      max-width: 280px;
+      background-color: #ffffff;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 5rem 1.5rem;
+      box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+      transform: translateX(-100%);
+      transition: transform 0.3s ease-in-out;
+      z-index: 1000;
+
+      &--open {
+        transform: translateX(0);
+      }
+    }
+
+    &__link {
+      padding: 0.75rem 0;
+      font-size: 1rem;
+      width: 100%;
+      border-bottom: 1px solid #f0f0f0;
+
+      &--active {
+        border-bottom: 2px solid #0070f3;
+      }
+    }
+
+    &__overlay {
+      display: block;
+    }
+
+    .logout-container {
+      display: none;
+    }
+  }
+
+  // Tablet (768px - 1023px)
+  @media (min-width: 768px) and (max-width: 1023px) {
+    padding: 1.2rem 0;
+
+    &__container {
+      width: 90%;
+    }
+
+    &__logo {
+      font-size: 1.4rem;
+    }
+
+    &__nav {
+      gap: 1rem;
+    }
+
+    &__link {
+      font-size: 0.95rem;
+    }
+
+    .logout-container {
+      margin-left: 1rem;
+
+      .btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  // Laptop (1024px - 1439px)
+  @media (min-width: 1024px) and (max-width: 1439px) {
+    padding: 1.3rem 0;
+
+    &__container {
+      width: 90%;
+    }
+
+    &__logo {
+      font-size: 1.5rem;
+    }
+
+    &__nav {
+      gap: 1.75rem;
+    }
+
+    &__link {
+      font-size: 1rem;
+    }
+
+    .logout-container {
+      margin-left: 2rem;
+    }
+  }
+
+  // Desktop (1440px and up)
+  @media (min-width: 1440px) {
+    padding: 1.5rem 0;
+
+    &__container {
+      width: 85%;
+    }
+
+    &__logo {
+      font-size: 1.6rem;
+    }
+
+    &__nav {
+      gap: 2rem;
+    }
+
+    &__link {
+      font-size: 1.05rem;
+    }
+
+    .logout-container {
+      margin-left: 2.5rem;
+
+      .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+      }
+    }
+  }
+}

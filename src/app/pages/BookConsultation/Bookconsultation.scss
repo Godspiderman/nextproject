@@ -1,0 +1,223 @@
+/////  Book-consultation Page /////
+
+.consultation {
+  width: 85%;
+  margin: 0 auto;
+  padding: 20px 0;
+  margin-top: 80px;
+
+  &__title {
+    text-align: center;
+    background-color: #3f7ded;
+    color: white;
+    margin-top: 5rem;
+    padding: 40px;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    margin: 0 0 2rem 0;
+  }
+
+  &__section {
+    margin: 2rem 0;
+  }
+
+  &__subtitle {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  &__doctors {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .doctor-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 10px;
+    max-width: 180px;
+    cursor: pointer;
+    position: relative;
+    transition: border 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    input[type="radio"] {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+
+    .consultation-img {
+      width: 80%;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    &:has(input:checked) {
+      border: 2px solid #3f7ded;
+    }
+  }
+
+  .date-picker {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .slot-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .slot-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
+
+  &__actions {
+    text-align: right;
+    margin-top: 2rem;
+    padding: 0 40px;
+
+    .confirm-btn {
+      background-color: #3f7ded;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #2f65d3;
+      }
+    }
+  }
+
+
+  // Mobile (320px - 480px)
+  @media (max-width: 480px) {
+    width: 95%;
+    padding: 15px 0;
+
+    &__title {
+      padding: 80px 0;
+      font-size: 1.3rem;
+    }
+
+    &__doctors {
+      flex-direction: column;
+    }
+
+    .doctor-card {
+      max-width: 100%;
+      flex-direction: row;
+      gap: 15px;
+      align-items: center;
+      text-align: left;
+
+      .consultation-img {
+        width: 80px;
+        margin-bottom: 0;
+      }
+    }
+
+    .slot-container {
+      flex-direction: column;
+    }
+
+    .slot-btn {
+      width: 100%;
+    }
+
+    &__actions {
+      text-align: center;
+
+      .confirm-btn {
+        width: 100%;
+        padding: 1rem;
+      }
+    }
+  }
+
+  // Tablet (481px - 768px)
+  @media (min-width: 481px) and (max-width: 768px) {
+    width: 90%;
+
+    &__doctors {
+      justify-content: center;
+    }
+
+    .doctor-card {
+      max-width: 48%;
+      flex: 0 0 calc(50% - 0.5rem);
+    }
+
+    .slot-container {
+      justify-content: flex-start;
+    }
+
+    .slot-btn {
+      flex: 0 0 calc(50% - 0.5rem);
+    }
+  }
+
+  // Laptop (769px - 1024px)
+  @media (min-width: 769px) and (max-width: 1024px) {
+    width: 85%;
+
+    .doctor-card {
+      max-width: 30%;
+      flex: 0 0 calc(33.333% - 0.67rem);
+    }
+
+    .slot-btn {
+      flex: 0 0 calc(25% - 0.75rem);
+    }
+  }
+
+  // Desktop (1025px - 1440px)
+  @media (min-width: 1025px) and (max-width: 1440px) {
+    width: 85%;
+
+    .doctor-card {
+      max-width: 22%;
+      flex: 0 0 calc(25% - 0.75rem);
+    }
+
+    .slot-btn {
+      flex: 0 0 calc(20% - 0.8rem);
+    }
+  }
+
+  // Large Desktop (1441px and up)
+  @media (min-width: 1441px) {
+    width: 85%;
+
+    .doctor-card {
+      max-width: 18%;
+      flex: 0 0 calc(20% - 0.8rem);
+    }
+
+    .slot-btn {
+      flex: 0 0 calc(16.666% - 0.83rem);
+    }
+  }
+}

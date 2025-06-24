@@ -1,0 +1,665 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+// Variables
+$primary-color: #ffffff;
+$highlight-color: #2F80ED;
+$hover-color: #5751e1;
+$transition-speed: 0.3s;
+$menu-max-height: 500px;
+
+// Universal Reset
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+}
+
+@media (max-width: 1382px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* Adjust base font size for even smaller screens */
+@media (max-width: 1280px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+.p10 {
+  padding: 10px 0px;
+}
+
+:root {
+  --text-color: #000000;
+
+  --primary-color: #2F80ED;
+  --white: #ffffff;
+  --sidemenu-bg: #ffffff;
+  --sidemenu-item-color: #ff0000;
+  --sidemenu-icon-color: #333333;
+  --sidemenu-btn-hover: var(--secondary-color);
+  --sidemenu-btn-active: var(--primary-color);
+  --sidemenu-btn-active-text: #ffffff;
+  --btn-background-color: var(--primary-color);
+
+  --sidemenu-btn-hover-text: var(--primary-color);
+}
+
+.box-shadow {
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: rgba(149, 157, 165, 0.3) 0px 0px 21px;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.error {
+  color: red;
+}
+
+.btns {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  background-color: var(--primary-color);
+  border: none;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.btn-cancel {
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+  color: #a8aaae;
+  border-color: rgba(0, 0, 0, 0);
+  background: #f1f1f2;
+  font-weight: 400;
+  font-size: 1rem;
+  margin-right: 10px;
+}
+
+.error-text {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+
+
+/* Body overlay effect */
+body.menu-open {
+  overflow: hidden;
+  /* Disable scrolling */
+}
+
+body.menu-open::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+
+@media (min-width: 855px) {
+  body.menu-open::after {
+    display: none;
+  }
+}
+
+
+// Variables
+$primary-color: #0070f3;
+$secondary-color: #005bb5;
+$text-color: #222;
+$light-bg: #f9f9f9;
+$card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+
+// Mixins
+@mixin respond-to($breakpoint) {
+  @if $breakpoint ==mobile {
+    @media (min-width: 320px) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint ==tablet {
+    @media (min-width: 768px) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint ==laptop {
+    @media (min-width: 1024px) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint ==desktop {
+    @media (min-width: 1444px) {
+      @content;
+    }
+  }
+}
+
+
+/////   Home Page /////
+
+.home {
+  width: 85%;
+  margin: 0 auto;
+  padding: 20px 0;
+
+  // Section common styles
+  .section-title,
+  .section-tittle {
+    margin-bottom: 2rem;
+
+    .section-head1 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: $text-color;
+      font-weight: 700;
+
+      span {
+        color: $primary-color;
+      }
+    }
+
+    .section-head2 {
+      width: 100%;
+      font-size: 1rem;
+      text-align: left;
+      line-height: 1.6;
+      color: lighten($text-color, 20%);
+
+      @include respond-to(tablet) {
+        width: 80%;
+      }
+
+      @include respond-to(laptop) {
+        width: 70%;
+      }
+
+      @include respond-to(desktop) {
+        width: 50%;
+      }
+    }
+  }
+
+  // Button styles
+  .button {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 5px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+
+    &.primary {
+      background-color: $primary-color;
+      color: white;
+
+      &:hover {
+        background-color: $secondary-color;
+      }
+    }
+  }
+
+  // Hero Section
+
+
+  .hero {
+    margin-bottom: 3rem;
+    padding-top: 80px;
+
+    @include respond-to(tablet) {
+      padding-top: 100px;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+
+      @include respond-to(laptop) {
+        flex-direction: row;
+        align-items: center;
+        gap: 3rem;
+      }
+
+      .hero-text {
+        order: 2;
+        flex: 1;
+
+        .sub-title {
+          font-size: 1rem;
+          color: $primary-color;
+          margin-bottom: 0.5rem;
+          font-weight: 600;
+        }
+
+        .main-title {
+          font-size: 2rem;
+          line-height: 1.3;
+          margin-bottom: 1rem;
+          color: $text-color;
+          font-weight: 800;
+
+          @include respond-to(tablet) {
+            font-size: 2.5rem;
+          }
+
+          @include respond-to(laptop) {
+            font-size: 3rem;
+          }
+        }
+
+        .hero-description {
+          font-size: 1rem;
+          line-height: 1.6;
+          margin-bottom: 1.5rem;
+          color: lighten($text-color, 20%);
+        }
+      }
+
+      .profile-image-content {
+        order: 1;
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: center;
+        flex: 1;
+
+        @include respond-to(laptop) {
+          margin-bottom: 0;
+          justify-content: flex-start;
+        }
+
+        .profile-image {
+          background-color: #E0E0E0;
+          border-radius: 10px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+          width: 100%;
+          height: auto;
+          max-width: 300px;
+
+          @include respond-to(tablet) {
+            max-width: 400px;
+          }
+
+          @include respond-to(laptop) {
+            max-width: 500px;
+          }
+        }
+      }
+    }
+  }
+
+  // Why Choose Us
+  .choose-us {
+    margin-bottom: 3rem;
+
+    .cards-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+
+      @include respond-to(tablet) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @include respond-to(laptop) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .choose-card {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: $card-shadow;
+        transition: transform 0.3s ease;
+
+        &:hover {
+          transform: translateY(-5px);
+        }
+
+        .cardimg-container {
+          .card-img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+          }
+        }
+
+        .card-title {
+          font-size: 1.3rem;
+          margin-bottom: 10px;
+          color: $text-color;
+          font-weight: 700;
+        }
+
+        .card-description {
+          font-size: 0.9rem;
+          line-height: 1.5;
+          color: lighten($text-color, 20%);
+        }
+      }
+    }
+  }
+
+  // Our Services
+  .services {
+    margin-bottom: 3rem;
+    background: $light-bg;
+    padding: 20px;
+
+    .service-tabs {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+
+      @include respond-to(tablet) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @include respond-to(laptop) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .service-card {
+        background: white;
+        border-radius: 10px;
+        padding: 25px;
+        box-shadow: $card-shadow;
+        transition: all 0.3s ease;
+
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .icon-service {
+          svg {
+            font-size: 2rem;
+            color: var(--primary-color);
+          }
+        }
+
+        .service-title {
+          font-size: 1.3rem;
+          margin-bottom: 10px;
+          color: $text-color;
+          font-weight: 700;
+        }
+
+        .service-description {
+          font-size: 0.9rem;
+          line-height: 1.5;
+          margin-bottom: 15px;
+          color: lighten($text-color, 20%);
+        }
+
+        .service-link {
+          color: $primary-color;
+          font-weight: 600;
+          text-decoration: none;
+          font-size: 0.9rem;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  // Meet Our Specialist
+  .specialists {
+    margin-bottom: 3rem;
+
+    .specialist-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+
+      @include respond-to(tablet) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @include respond-to(laptop) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .doctor-card {
+        text-align: center;
+        background: rgb(202, 202, 202);
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: $card-shadow;
+        transition: all 0.3s ease;
+
+        &:hover {
+          transform: translateY(-5px);
+        }
+
+        .specialist-img {
+          border-radius: 50%;
+          margin-bottom: 15px;
+          width: 200px;
+          height: 200px;
+          object-fit: cover;
+          border: 3px solid $light-bg;
+        }
+
+        .doctor-name {
+          font-size: 1.1rem;
+          margin-bottom: 5px;
+          color: $text-color;
+          font-weight: 700;
+        }
+
+        .doctor-specialty {
+          font-size: 0.9rem;
+          color: lighten($text-color, 20%);
+        }
+      }
+    }
+  }
+
+  // Facilities
+  .facilities {
+    background: $light-bg;
+    padding: 20px;
+    margin-bottom: 3rem;
+
+    .facility-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+
+      @include respond-to(tablet) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @include respond-to(laptop) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .facility-img {
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+
+        @include respond-to(tablet) {
+          height: 250px;
+        }
+
+        @include respond-to(laptop) {
+          height: 300px;
+        }
+
+        &:hover {
+          transform: scale(1.02);
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+.go-back-btn {
+  //all: unset;
+  background-color: #a66b4f;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  margin: 4px;
+}
+
+
+//pagination  ///
+
+
+.pagination {
+  padding: 10px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+
+  .page-info {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    flex: 1 1 100%;
+    text-align: center;
+
+    @media (min-width: 500px) {
+      flex: 0 0 auto;
+      margin-bottom: 0;
+      text-align: left;
+    }
+  }
+
+  .page-numbers {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    button {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      color: #333;
+      padding: 8px 12px;
+      border-radius: 50%;
+      margin: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #f0f0f0;
+      }
+
+      &.active {
+        background-color: var(--btn-background-color);
+        color: #fff;
+        border: 1px solid var(--btn-background-color);
+      }
+    }
+  }
+
+  .pagination-btns {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    flex: 1 1 100%;
+
+    .pagination-btn {
+      font-size: 0.8rem;
+      cursor: pointer;
+      padding: 10px 15px;
+      border-radius: 5px;
+      color: white;
+      border: none;
+      margin: 5px;
+      background-color: var(--btn-background-color);
+      transition: background-color 0.3s;
+
+      &:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+    }
+
+    @media (min-width: 500px) {
+      margin-top: 0;
+      justify-content: flex-end;
+      flex: 0 0 auto;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .pagination {
+    flex-direction: column;
+    align-items: center;
+
+    .page-numbers {
+      justify-content: center;
+    }
+
+    .pagination-btns {
+      justify-content: center;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .pagination {
+    .page-info {
+      font-size: 0.8rem;
+    }
+
+    .page-numbers button {
+      padding: 6px 10px;
+      font-size: 0.8rem;
+    }
+
+    .pagination-btns .pagination-btn {
+      font-size: 0.7rem;
+      padding: 8px 12px;
+    }
+  }
+}
