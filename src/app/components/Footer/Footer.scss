@@ -3,9 +3,9 @@
   background-color: #457bf9;
   padding: 2rem 0;
   text-align: center;
-  border-radius: 1rem;
-  margin: 1rem;
   color: #fff;
+  width: calc(100% - 2rem);
+  margin: 1rem;
 
   .container {
     display: flex;
@@ -13,6 +13,8 @@
     gap: 1rem;
     align-items: center;
     padding: 0 1rem;
+    max-width: 1440px;
+    margin: 0 auto;
   }
 
   .logo {
@@ -20,6 +22,7 @@
     font-weight: bold;
     font-family: 'Georgia', serif;
     letter-spacing: 0.5px;
+    color: white;
   }
 
   .navLinks {
@@ -52,6 +55,7 @@
       text-decoration: none;
       color: inherit;
       font-size: 0.8rem;
+      transition: color 0.3s;
 
       &:hover {
         color: #ffdd57;
@@ -68,11 +72,10 @@
     color: #e0e0e0;
   }
 
-  // Responsive styles
-  @media (min-width: 320px) and (max-width: 767px) {
-    // Mobile styles (already defined as base styles)
-    margin: 0.5rem;
-    border-radius: 0.5rem;
+  // Mobile (320px - 480px)
+  @media (max-width: 480px) {
+    width: 100%;
+    margin: 0 auto;
     padding: 1.5rem 0;
 
     .container {
@@ -82,13 +85,18 @@
     .navLinks {
       gap: 0.8rem;
     }
+
+    .socialLinks {
+      gap: 0.5rem;
+    }
   }
 
-  @media (min-width: 768px) {
-    // Tablet styles
+  // Tablet (481px - 768px)
+  @media (min-width: 481px) and (max-width: 768px) {
+    width: 100%;
+
+    margin: 0 auto;
     padding: 2.5rem 0;
-    border-radius: 1.5rem;
-    margin: 1.5rem;
 
     .logo {
       font-size: 2rem;
@@ -115,22 +123,31 @@
     }
   }
 
-  @media (min-width: 1024px) {
-    // Laptop styles
+  // Laptop (769px - 1024px)
+  @media (min-width: 769px) and (max-width: 1024px) {
+    width: 100%;
+
+    margin: 0 auto;
     padding: 3rem 0;
-    border-radius: 2rem;
-    margin: 2rem;
 
     .logo {
-      font-size: 2.5rem;
+      font-size: 2.25rem;
     }
 
     .navLinks {
       gap: 2rem;
+
+      a {
+        font-size: 1.1rem;
+      }
     }
 
     .socialLinks {
       gap: 1rem;
+
+      a {
+        font-size: 0.95rem;
+      }
     }
 
     .copy {
@@ -138,15 +155,58 @@
     }
   }
 
-  @media (min-width: 1440px) {
-    // Desktop styles
+  // Desktop (1025px - 1440px)
+  @media (min-width: 1025px) and (max-width: 1440px) {
+    width: 100%;
+
+    margin: 0 auto;
     padding: 3.5rem 0;
-    margin: 2.5rem auto;
-    max-width: 1400px;
+
+    .logo {
+      font-size: 2.5rem;
+    }
+
+    .navLinks {
+      gap: 2.5rem;
+    }
+
+    .socialLinks {
+      gap: 1rem;
+    }
+  }
+
+  // Large Desktop (1441px and up)
+  @media (min-width: 1441px) {
+    width: 100%;
+    margin: 0 auto;
+    padding: 4rem 0;
 
     .container {
-      max-width: 1200px;
-      margin: 0 auto;
+      max-width: 1600px;
+    }
+
+    .logo {
+      font-size: 3rem;
+    }
+
+    .navLinks {
+      gap: 3rem;
+
+      a {
+        font-size: 1.2rem;
+      }
+    }
+
+    .socialLinks {
+      gap: 1.2rem;
+
+      a {
+        font-size: 1rem;
+      }
+    }
+
+    .copy {
+      font-size: 0.9rem;
     }
   }
 }
