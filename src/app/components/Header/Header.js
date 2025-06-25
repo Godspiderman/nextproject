@@ -4,8 +4,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { HiMenu, HiX } from "react-icons/hi";
 import "./Header.scss";
+import { useRouter } from 'next/navigation';
 
 export default function Header() {
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
@@ -17,6 +19,10 @@ export default function Header() {
       return pathname === href;
     }
     return pathname.startsWith(href);
+  };
+
+  const handleLogin = () => { 
+    router.push('/components/Login');
   };
 
   return (
@@ -45,32 +51,32 @@ export default function Header() {
           </Link>
 
           <Link
-            href="/pages"
-            className={`Header__link ${isActive("/ptruyrtages") ? "Header__link--active" : ""}`}
+            href="/about"
+            className={`Header__link ${isActive("/about") ? "Header__link--active" : ""}`}
             onClick={closeMenu}
           >
             ABOUT
           </Link>
 
           <Link
-            href="/pages"
-            className={`Header__link ${isActive("/yyey") ? "Header__link--active" : ""}`}
+            href="/services"
+            className={`Header__link ${isActive("/services") ? "Header__link--active" : ""}`}
             onClick={closeMenu}
           >
             SERVICES
           </Link>
 
           <Link
-            href="/pages"
-            className={`Header__link ${isActive("/qwert") ? "Header__link--active" : ""}`}
+            href="/doctors"
+            className={`Header__link ${isActive("/doctors") ? "Header__link--active" : ""}`}
             onClick={closeMenu}
           >
             OUR DOCTORS
           </Link>
 
           <Link
-            href="/pages/Contact"
-            className={`Header__link ${isActive("/pages/Contact") ? "Header__link--active" : ""}`}
+            href="/contact"
+            className={`Header__link ${isActive("/contact") ? "Header__link--active" : ""}`}
             onClick={closeMenu}
           >
             CONTACT
@@ -86,7 +92,7 @@ export default function Header() {
         )}
 
         <div className="logout-container">
-          <button className="btn">Login</button>
+          <button className="btn" onClick={handleLogin}>Login</button>
         </div>
       </div>
     </header>
