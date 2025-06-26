@@ -8,7 +8,6 @@ $transition: all 0.3s ease;
 $overlay-color: rgba(0, 0, 0, 0.5);
 $mobile-nav-width: 280px;
 
-
 .Header {
   position: fixed;
   top: 0;
@@ -88,30 +87,8 @@ $mobile-nav-width: 280px;
     display: none;
   }
 
-  &__desktopLogin {
-    margin-left: 1.5rem;
-
-    .btn {
-      padding: 0.5rem 1rem;
-      background-color: $primary-color;
-      color: $white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: 500;
-      transition: background-color $transition;
-
-      &:hover {
-        background-color: $primary-hover;
-      }
-    }
-  }
-
-  &__mobileLogin {
-    display: none;
-    width: 100%;
-    padding: 0.75rem;
-    margin-top: 1rem;
+  &__loginBtn {
+    padding: 0.5rem 1rem;
     background-color: $primary-color;
     color: $white;
     border: none;
@@ -119,10 +96,17 @@ $mobile-nav-width: 280px;
     cursor: pointer;
     font-weight: 500;
     transition: background-color $transition;
-    text-align: center;
 
     &:hover {
       background-color: $primary-hover;
+    }
+
+    &--mobile {
+      display: none;
+    }
+
+    &--desktop {
+      margin-left: 1.5rem;
     }
   }
 
@@ -175,12 +159,18 @@ $mobile-nav-width: 280px;
       display: block;
     }
 
-    &__desktopLogin {
-      display: none;
-    }
+    &__loginBtn {
+      &--mobile {
+        display: block;
+        width: 100%;
+        padding: 0.75rem;
+        margin-top: 1rem;
+        text-align: center;
+      }
 
-    &__mobileLogin {
-      display: block;
+      &--desktop {
+        display: none;
+      }
     }
   }
 
@@ -204,10 +194,9 @@ $mobile-nav-width: 280px;
       font-size: 0.95rem;
     }
 
-    &__desktopLogin {
-      margin-left: 1rem;
-
-      .btn {
+    &__loginBtn {
+      &--desktop {
+        margin-left: 1rem;
         padding: 0.5rem 0.8rem;
         font-size: 0.9rem;
       }
@@ -234,8 +223,10 @@ $mobile-nav-width: 280px;
       font-size: 1rem;
     }
 
-    &__desktopLogin {
-      margin-left: 2rem;
+    &__loginBtn {
+      &--desktop {
+        margin-left: 2rem;
+      }
     }
   }
 
@@ -259,10 +250,9 @@ $mobile-nav-width: 280px;
       font-size: 1.05rem;
     }
 
-    &__desktopLogin {
-      margin-left: 2.5rem;
-
-      .btn {
+    &__loginBtn {
+      &--desktop {
+        margin-left: 2.5rem;
         padding: 0.6rem 1.2rem;
         font-size: 1rem;
       }

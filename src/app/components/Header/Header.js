@@ -83,9 +83,9 @@ export default function Header() {
             CONTACT
           </Link>
 
-          {/* Mobile Login Button */}
+          {/* Single Login Button - shown only in mobile nav */}
           <button 
-            className="Header__mobileLogin btn" 
+            className="Header__loginBtn Header__loginBtn--mobile" 
             onClick={handleLogin}
           >
             Login
@@ -100,10 +100,13 @@ export default function Header() {
           />
         )}
 
-        {/* Desktop Login Button */}
-        <div className="Header__desktopLogin">
-          <button className="btn" onClick={handleLogin}>Login</button>
-        </div>
+        {/* Single Login Button - shown only on desktop */}
+        <button 
+          className="Header__loginBtn Header__loginBtn--desktop" 
+          onClick={handleLogin}
+        >
+          Login
+        </button>
       </div>
     </header>
   );
