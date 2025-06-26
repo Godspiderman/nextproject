@@ -1,6 +1,6 @@
 // Variables
-$primary-color: #2b6cb0;
-$secondary-color: #4299e1;
+$primary-color: var(--primary-color);
+$secondary-color: var( --secondary-color);
 $text-color: #2d3748;
 $light-gray: #f7fafc;
 $border-radius: 8px;
@@ -142,7 +142,7 @@ $box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
                     border: none;
 
                     &:hover {
-                        background-color: $primary-color;
+                        background-color: var(--secondary-color);
                     }
                 }
 

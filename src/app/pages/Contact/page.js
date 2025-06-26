@@ -9,7 +9,7 @@ function Page() {
   return (
     <div className="contact">
       <div className="contact-tittle-container">
-        <h2 className="contact__title h2"><span style={{ color: "#3f7ded" }}>Contact</span> Us</h2>
+        <h2 className="contact__title h2"><span >Contact</span> Us</h2>
         <Image
           className="tittle-image"
           src="/images/29784499df9bf021fa1e2d09e816e822469f89e5.jpg"

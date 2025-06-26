@@ -36,7 +36,7 @@
 
             .search-button {
                 padding: 0 1.5rem;
-                background-color: #3f7ded;
+                background-color: var(--primary-color);
                 color: white;
                 border: none;
                 border-radius: 0 4px 4px 0;
@@ -86,15 +86,15 @@
 
             .learn-more {
                 background: none;
-                border: 1px solid #3f7ded;
-                color: #3f7ded;
+                border: 1px solid var(--primary-color);
+                color: var(--secondary-color);
                 padding: 0.5rem 1rem;
                 border-radius: 4px;
                 cursor: pointer;
                 transition: all 0.3s ease;
 
                 &:hover {
-                    background-color: #3f7ded;
+                    background-color: var(--primary-color);
                     color: white;
                 }
             }

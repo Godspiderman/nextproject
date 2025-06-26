@@ -6,7 +6,7 @@
 
   &__title {
     text-align: center;
-    background-color: #3f7ded;
+    background-color: var(--primary-color);
     color: white;
     padding: 40px;
     border-radius: 8px;
@@ -53,7 +53,7 @@
     }
 
     &:has(input:checked) {
-      border: 2px solid #3f7ded;
+      border: 2px solid var( --secondary-color);
     }
   }
 
@@ -80,9 +80,9 @@
     cursor: pointer;
 
     &.selected {
-      background-color: #3f7ded;
+      background-color: var(--secondary-color);
       color: white;
-      border-color: #3f7ded;
+      border-color: var(--secondary-color);
     }
   }
 
@@ -92,7 +92,7 @@
     padding: 0 40px;
 
     .confirm-btn {
-      background-color: #3f7ded;
+      background-color: var(--primary-color);
       color: white;
       padding: 0.75rem 1.5rem;
       border: none;
@@ -153,6 +153,10 @@
       .confirm-btn {
         width: 100%;
         padding: 1rem;
+        &:hover{
+          background-color: var(--secondary-color);
+          transform: translateY(-2px);
+        }
       }
     }
   }

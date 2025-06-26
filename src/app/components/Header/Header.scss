@@ -1,6 +1,6 @@
 // Variables
-$primary-color: #0070f3;
-$primary-hover: #005bb5;
+$primary-color: var(--primary-color);
+$primary-hover: var( --secondary-color);
 $text-color: #333;
 $white: #ffffff;
 $shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -67,11 +67,13 @@ $mobile-nav-width: 280px;
 
     &:hover {
       color: $primary-color;
+      font-weight: 600;
+
     }
 
     &--active {
       color: $primary-color;
-      font-weight: 600;
+      font-weight: 800;
     }
   }
 

@@ -1,6 +1,6 @@
 // Variables
-$primary-color: #3f7ded;
-$primary-hover: #2f65d3;
+$primary-color: var(--primary-color);
+$primary-hover: var(--secondary-color);
 $text-color: #333;
 $light-gray: #f5f5f5;
 $border-color: #ddd;
