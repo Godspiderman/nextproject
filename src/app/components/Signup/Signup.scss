@@ -20,7 +20,7 @@
 
     .signup-form {
       width: 100%;
-      background-color: #ffffff;
+      background-color: #f8f8f8;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -28,7 +28,6 @@
 
       .signup-form-content {
         width: 90%;
-        max-width: 800px;
 
         .signup-form-head {
           margin-bottom: 2rem;
@@ -145,21 +144,23 @@
     }
 
     .signup-img {
+      overflow: hidden;
       display: none;
-      background-color: #BCD9FF;
       align-items: center;
       justify-content: center;
+      background-color: #ffffff;
 
       .signup-img-box {
+        padding: 20px;
         width: 100%;
-        height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
 
         .log-image {
           width: 100%;
-          height: 100vh;
+          height: 85vh;
+          border-radius: 20px;
         }
       }
     }

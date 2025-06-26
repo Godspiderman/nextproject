@@ -21,39 +21,39 @@ function Page() {
 
       <div className="contact__cards">
         <div className="contact__card">
-          <Image
+          {/* <Image
             className="contact-image"
             src="/images/contact-us-via-email-phone-or-office-location-communicate-with-customer-or-client-business-information-or-channel-for-business-contact-concept-businessman-with-telephone-email-and-location-pin-vector.png"
             alt="Email"
             width={200}
             height={200}
-          />
+          /> */}
           <div className="contact__icon"><SiGmail /></div>
           <p className="p">educationplatform@gmail.com</p>
           <p className="p">educationplatform@gmail.com</p>
         </div>
 
         <div className="contact__card">
-          <Image
+          {/* <Image
             className="contact-image"
             src="/images/contact-us-via-email-phone-or-office-location-communicate-with-customer-or-client-business-information-or-channel-for-business-contact-concept-businessman-with-telephone-email-and-location-pin-vector.png"
             alt="Call"
             width={200}
             height={200}
-          />
+          /> */}
           <div className="contact__icon"><MdAddIcCall /></div>
           <p className="p">+91 12345 67890</p>
           <p className="p">+91 12345 67890</p>
         </div>
 
         <div className="contact__card">
-          <Image
+          {/* <Image
             className="contact-image"
             src="/images/contact-us-via-email-phone-or-office-location-communicate-with-customer-or-client-business-information-or-channel-for-business-contact-concept-businessman-with-telephone-email-and-location-pin-vector.png"
             alt="Location"
             width={200}
             height={200}
-          />
+          /> */}
           <div className="contact__icon"><FaMapLocationDot /></div>
           <p className="p">123 Anna Salai street, North Side of<br />Ganapathy Temple, Tamil Nadu</p>
         </div>

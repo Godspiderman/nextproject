@@ -38,6 +38,7 @@ html {
 
 :root {
   --text-color: #000000;
+  --text--head-color: #2c5282;
 
   --primary-color: #2F80ED;
   --white: #ffffff;
@@ -134,6 +135,7 @@ body.menu-open::after {
 // Variables
 $primary-color: #0070f3;
 $secondary-color: #005bb5;
+
 $text-color: #222;
 $light-bg: #f9f9f9;
 $card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
@@ -173,28 +175,64 @@ $card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   margin: 0 auto;
   padding: 20px 0;
 
+  // Animation keyframes
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+
+  @keyframes slideInFromLeft {
+    from { transform: translateX(-50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+
+  @keyframes slideInFromRight {
+    from { transform: translateX(50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+
   // Section common styles
   .section-title,
   .section-tittle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     margin-bottom: 2rem;
+    animation: fadeIn 0.8s ease-out forwards;
 
     .section-head1 {
       font-size: 1.8rem;
       margin-bottom: 1rem;
       color: $text-color;
       font-weight: 700;
+      animation: fadeIn 1s ease-out 0.2s both;
 
       span {
-        color: $primary-color;
+        color: $secondary-color;
+        display: inline-block;
       }
     }
 
     .section-head2 {
       width: 100%;
       font-size: 1rem;
-      text-align: left;
+      text-align: center;
       line-height: 1.6;
       color: lighten($text-color, 20%);
+      animation: fadeIn 1s ease-out 0.4s both;
 
       @include respond-to(tablet) {
         width: 80%;
@@ -218,23 +256,47 @@ $card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
+    animation: fadeIn 1s ease-out 0.6s both;
 
     &.primary {
       background-color: $primary-color;
       color: white;
+      position: relative;
+      overflow: hidden;
 
       &:hover {
         background-color: $secondary-color;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      &:active {
+        transform: translateY(1px);
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateX(-100%);
+        transition: transform 0.6s ease;
+      }
+
+      &:hover::after {
+        transform: translateX(0);
       }
     }
   }
 
   // Hero Section
-
-
   .hero {
     margin-bottom: 3rem;
     padding-top: 80px;
+    overflow: hidden;
 
     @include respond-to(tablet) {
       padding-top: 100px;
@@ -253,27 +315,31 @@ $card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
       .hero-text {
         order: 2;
         flex: 1;
+        animation: slideInFromLeft 0.8s ease-out both;
 
         .sub-title {
           font-size: 1rem;
           color: $primary-color;
           margin-bottom: 0.5rem;
           font-weight: 600;
+          animation: fadeIn 0.8s ease-out 0.2s both;
         }
 
         .main-title {
           font-size: 2rem;
           line-height: 1.3;
+          text-align: left;
           margin-bottom: 1rem;
           color: $text-color;
           font-weight: 800;
+          animation: fadeIn 0.8s ease-out 0.4s both;
 
           @include respond-to(tablet) {
-            font-size: 2.5rem;
+            font-size: 2rem;
           }
 
           @include respond-to(laptop) {
-            font-size: 3rem;
+            font-size: 2rem;
           }
         }
 
@@ -282,6 +348,7 @@ $card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
           line-height: 1.6;
           margin-bottom: 1.5rem;
           color: lighten($text-color, 20%);
+          animation: fadeIn 0.8s ease-out 0.6s both;
         }
       }
 
@@ -291,10 +358,11 @@ $card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         display: flex;
         justify-content: center;
         flex: 1;
+        animation: slideInFromRight 0.8s ease-out both;
 
         @include respond-to(laptop) {
           margin-bottom: 0;
-          justify-content: flex-start;
+          justify-content: center;
         }
 
         .profile-image {
@@ -304,6 +372,8 @@ $card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
           width: 100%;
           height: auto;
           max-width: 300px;
+          transition: transform 0.5s ease;
+          animation: float 6s ease-in-out infinite;
 
           @include respond-to(tablet) {
             max-width: 400px;
@@ -311,6 +381,10 @@ $card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 
           @include respond-to(laptop) {
             max-width: 500px;
+          }
+
+          &:hover {
+            animation: float 3s ease-in-out infinite, pulse 2s ease-in-out;
           }
         }
       }
@@ -339,18 +413,35 @@ $card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         border-radius: 10px;
         padding: 20px;
         box-shadow: $card-shadow;
-        transition: transform 0.3s ease;
+        transition: all 0.3s ease;
+        opacity: 0;
+        animation: fadeIn 0.8s ease-out forwards;
+
+        @for $i from 1 through 3 {
+          &:nth-child(#{$i}) {
+            animation-delay: 0.2s * $i;
+          }
+        }
 
         &:hover {
-          transform: translateY(-5px);
+          transform: translateY(-10px);
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
 
         .cardimg-container {
+          overflow: hidden;
+          border-radius: 8px;
+
           .card-img {
             width: 100%;
             border-radius: 8px;
             margin-bottom: 15px;
+            transition: transform 0.5s ease;
           }
+        }
+
+        &:hover .card-img {
+          transform: scale(1.1);
         }
 
         .card-title {
@@ -358,6 +449,23 @@ $card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
           margin-bottom: 10px;
           color: $text-color;
           font-weight: 700;
+          position: relative;
+          display: inline-block;
+
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: $primary-color;
+            transition: width 0.3s ease;
+          }
+        }
+
+        &:hover .card-title::after {
+          width: 100%;
         }
 
         .card-description {
@@ -394,17 +502,32 @@ $card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         padding: 25px;
         box-shadow: $card-shadow;
         transition: all 0.3s ease;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeIn 0.8s ease-out forwards;
+
+        @for $i from 1 through 3 {
+          &:nth-child(#{$i}) {
+            animation-delay: 0.2s * $i;
+          }
+        }
 
         &:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+          transform: translateY(-10px) !important;
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
 
         .icon-service {
           svg {
             font-size: 2rem;
             color: var(--primary-color);
+            transition: all 0.3s ease;
           }
+        }
+
+        &:hover .icon-service svg {
+          transform: rotate(15deg) scale(1.2);
+          color: $secondary-color;
         }
 
         .service-title {
@@ -426,9 +549,25 @@ $card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
           font-weight: 600;
           text-decoration: none;
           font-size: 0.9rem;
+          position: relative;
+          display: inline-block;
+          padding-bottom: 3px;
+
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: $primary-color;
+            transition: width 0.3s ease;
+          }
 
           &:hover {
-            text-decoration: underline;
+            &::after {
+              width: 100%;
+            }
           }
         }
       }
@@ -459,9 +598,19 @@ $card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         padding: 20px;
         box-shadow: $card-shadow;
         transition: all 0.3s ease;
+        opacity: 0;
+        animation: fadeIn 0.8s ease-out forwards;
+
+        @for $i from 1 through 3 {
+          &:nth-child(#{$i}) {
+            animation-delay: 0.2s * $i;
+          }
+        }
 
         &:hover {
-          transform: translateY(-5px);
+          transform: translateY(-10px);
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+          background: darken(rgb(202, 202, 202), 5%);
         }
 
         .specialist-img {
@@ -471,6 +620,13 @@ $card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
           height: 200px;
           object-fit: cover;
           border: 3px solid $light-bg;
+          transition: all 0.3s ease;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        &:hover .specialist-img {
+          border-color: $primary-color;
+          transform: scale(1.05);
         }
 
         .doctor-name {
@@ -513,7 +669,15 @@ $card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         width: 100%;
         height: 200px;
         object-fit: cover;
-        transition: transform 0.3s ease;
+        transition: all 0.5s ease;
+        opacity: 0;
+        animation: fadeIn 0.8s ease-out forwards;
+
+        @for $i from 1 through 3 {
+          &:nth-child(#{$i}) {
+            animation-delay: 0.2s * $i;
+          }
+        }
 
         @include respond-to(tablet) {
           height: 250px;
@@ -524,7 +688,8 @@ $card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
 
         &:hover {
-          transform: scale(1.02);
+          transform: scale(1.05);
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
       }
     }

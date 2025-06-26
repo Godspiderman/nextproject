@@ -12,26 +12,26 @@
       display: none;
       align-items: center;
       justify-content: center;
-      background-color: #BCD9FF;
+      background-color: #ffffff;
 
       .login-img-box {
+        padding: 20px;
         width: 100%;
-        height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
 
         .log-image {
           width: 100%;
-          height: 100vh;
-        //   object-fit: contain;
+          height: 85vh;
+          border-radius: 20px;
         }
       }
     }
 
     .login-form {
       width: 100%;
-      background-color: #ffffff;
+     background-color: #f8f8f8;
       display: flex;
       align-items: center;
       justify-content: center;

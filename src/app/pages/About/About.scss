@@ -1,0 +1,505 @@
+// Animation Variables
+$transition-fast: 0.2s ease-in-out;
+$transition-medium: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$transition-slow: 0.6s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+// Keyframe Animations
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.hospital-about {
+  color: #333;
+  width: 85%;
+  margin: 0 auto;
+  overflow-x: hidden;
+  margin-top: 80px;
+  padding: 2rem;
+
+
+  .about-hero {
+    position: relative;
+    margin-bottom: 3rem;
+    overflow: hidden;
+
+    .hero-image-container {
+      position: relative;
+      overflow: hidden;
+      height: 500px;
+
+      .hero-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.7);
+        border-radius: 20px;
+
+      }
+
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-align: center;
+        padding: 2rem;
+
+        .hospital-name {
+          font-size: 3.5rem;
+          font-weight: 700;
+          margin-bottom: 1rem;
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hospital-tagline {
+          font-size: 1.5rem;
+          font-weight: 400;
+          max-width: 800px;
+          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+      }
+    }
+  }
+
+  .about-content-container {
+    padding: 0 2rem;
+    margin-bottom: 4rem;
+
+    .section-title {
+      font-size: 2rem;
+      color: #2c5282;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      position: relative;
+      padding-bottom: 0.5rem;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 80px;
+        height: 4px;
+        background-color: #4299e1;
+      }
+    }
+
+    .about-intro-section {
+      margin-bottom: 4rem;
+
+      .intro-text-container {
+        margin-bottom: 3rem;
+
+        .section-description {
+          font-size: 1.1rem;
+          line-height: 1.8;
+          color: #4a5568;
+          margin-bottom: 1rem;
+        }
+
+        .established-text {
+          font-style: italic;
+          color: #718096;
+        }
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+
+        .stat-card {
+          background-color: #f7fafc;
+          border-radius: 8px;
+          padding: 2rem 1rem;
+          text-align: center;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+          transition: all $transition-medium;
+
+          &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+          }
+
+          .stat-value {
+            font-size: 2.5rem;
+            color: #2b6cb0;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+          }
+
+          .stat-label {
+            font-size: 1rem;
+            color: #4a5568;
+          }
+        }
+      }
+    }
+
+    .two-column-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 4rem;
+
+      .mission-section,
+      .vision-section {
+        background-color: #f8f9fa;
+        padding: 2rem;
+        border-radius: 8px;
+        border-left: 4px solid #4299e1;
+
+        .mission-text,
+        .vision-text {
+          font-size: 1.1rem;
+          line-height: 1.7;
+          color: #4a5568;
+        }
+      }
+    }
+
+    .facilities-section {
+      margin-bottom: 4rem;
+
+      .facilities-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        list-style: none;
+        padding: 0;
+
+        .facility-item {
+          display: flex;
+          align-items: center;
+          padding: 1rem;
+          background-color: #f7fafc;
+          border-radius: 6px;
+          transition: all $transition-fast;
+
+          &:hover {
+            background-color: #ebf8ff;
+          }
+
+          .facility-icon {
+            color: #2b6cb0;
+            font-weight: bold;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+          }
+
+          .facility-text {
+            font-size: 1.05rem;
+          }
+        }
+      }
+    }
+
+    .awards-section {
+      margin-bottom: 4rem;
+
+      .awards-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+
+        .award-card {
+          display: flex;
+          align-items: flex-start;
+          padding: 1.5rem;
+          background-color: white;
+          border-radius: 8px;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+          border: 1px solid #e2e8f0;
+          transition: all $transition-medium;
+
+          &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+          }
+
+          .award-badge {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            color: #d69e2e;
+          }
+
+          .award-text {
+            font-size: 1rem;
+            color: #4a5568;
+          }
+        }
+      }
+    }
+
+    .cta-section {
+      text-align: center;
+      padding: 3rem;
+      background-color: #ebf8ff;
+      border-radius: 12px;
+
+      .cta-title {
+        font-size: 2rem;
+        color: #2c5282;
+        margin-bottom: 1rem;
+      }
+
+      .cta-text {
+        font-size: 1.1rem;
+        color: #4a5568;
+        margin-bottom: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .cta-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+
+        .primary-cta,
+        .secondary-cta {
+          padding: 0.8rem 2rem;
+          font-size: 1rem;
+          font-weight: 600;
+          border-radius: 6px;
+          cursor: pointer;
+          transition: all $transition-fast;
+        }
+
+        .primary-cta {
+          background-color: #3182ce;
+          color: white;
+          border: none;
+
+          &:hover {
+            background-color: #2c5282;
+          }
+        }
+
+        .secondary-cta {
+          background-color: transparent;
+          color: #3182ce;
+          border: 2px solid #3182ce;
+
+          &:hover {
+            background-color: #ebf8ff;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Mobile (320px - 480px)
+@media (max-width: 480px) {
+  .hospital-about {
+    width: 95%;
+    margin-top: 60px;
+
+    .about-hero {
+      .hero-image-container {
+        height: 250px;
+
+        .hero-overlay {
+          .hospital-name {
+            font-size: 1.8rem;
+          }
+
+          .hospital-tagline {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+
+    .about-content-container {
+      padding: 0 1rem;
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+
+      .about-intro-section {
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .two-column-section {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .facilities-section {
+        .facilities-list {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .awards-section {
+        .awards-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .cta-section {
+        padding: 2rem 1rem;
+
+        .cta-buttons {
+          flex-direction: column;
+          gap: 1rem;
+        }
+      }
+    }
+  }
+}
+
+// Tablet (481px - 768px)
+@media (min-width: 481px) and (max-width: 768px) {
+  .hospital-about {
+    width: 90%;
+
+    .about-hero {
+      .hero-image-container {
+        height: 350px;
+
+        .hero-overlay {
+          .hospital-name {
+            font-size: 2.5rem;
+          }
+        }
+      }
+    }
+
+    .about-content-container {
+      .about-intro-section {
+        .stats-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .two-column-section {
+        grid-template-columns: 1fr;
+      }
+
+      .facilities-section {
+        .facilities-list {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .awards-section {
+        .awards-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+    }
+  }
+}
+
+// Laptop (769px - 1024px)
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hospital-about {
+    .about-hero {
+      .hero-image-container {
+        height: 400px;
+      }
+    }
+
+    .about-content-container {
+      .facilities-section {
+        .facilities-list {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+    }
+  }
+}
+
+// Desktop (1025px - 1440px) - Default styles apply
+
+// Large Desktop (1441px and up)
+@media (min-width: 1441px) {
+  .hospital-about {
+    width: 85%;
+
+    .about-hero {
+      .hero-image-container {
+        height: 600px;
+
+        .hero-overlay {
+          .hospital-name {
+            font-size: 4rem;
+          }
+
+          .hospital-tagline {
+            font-size: 1.8rem;
+          }
+        }
+      }
+    }
+
+    .about-content-container {
+      padding: 0 4rem;
+
+      .section-title {
+        font-size: 2.5rem;
+      }
+
+      .cta-section {
+        padding: 4rem;
+
+        .cta-title {
+          font-size: 2.5rem;
+        }
+
+        .cta-text {
+          font-size: 1.3rem;
+        }
+      }
+    }
+  }
+}

@@ -228,27 +228,6 @@ const Signup = () => {
               </div>
 
               <div className="signup-form1">
-                <label>Confirm Password*</label>
-                <div className="password-input-container">
-                  <input
-                    type={showConfirmPassword ? "text" : "password"}
-                    name="confirmPassword"
-                    value={formData.confirmPassword}
-                    onChange={handleChange}
-                    maxLength={15}
-                    className={`input ${errors.confirmPassword ? "input-error" : ""}`}
-                  />
-                  <span
-                    className="eye-icon"
-                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  >
-                    {showConfirmPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
-                  </span>
-                </div>
-                {errors.confirmPassword && <p className="error-message p">{errors.confirmPassword}</p>}
-              </div>
-
-              <div className="signup-form1">
                 <label>Date of Birth*</label>
                 <input
                   type="date"
@@ -358,7 +337,7 @@ const Signup = () => {
           <div className='signup-img-box'>
             <Image
               className="log-image"
-              src="/images/Component 10.png"
+              src="/images/4113244.jpg"
               alt="Doctor"
               width={400}
               height={400}

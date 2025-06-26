@@ -111,7 +111,7 @@ const Login = () => {
           <div className='login-img-box'>
             <Image
               className="log-image"
-              src="/images/Component 10.png"
+              src="/images/4113244.jpg"
               alt="Doctor"
               width={400}
               height={400}

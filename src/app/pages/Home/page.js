@@ -45,11 +45,23 @@ function page() {
         },
     ];
 
-    const doctorList = new Array(3).fill({
+    const doctorList = [
+        {
         name: "Dr. Olivia Ellyer",
         specialty: "General Medicine",
         image: "/images/image 4.png",
-    });
+        },
+        {
+        name: "Dr. Priya Patel",
+        specialty: "General Medicine",
+        image: "/images/360_F_647162966_SFu8GP6awkeW0OnFnAxPjiGXSoeme4ht.jpg",
+        },
+        {
+        name: "Dr. Michael Chen",
+        specialty: "General Medicine",
+        image: "/images/ai-generative-portrait-of-confident-male-doctor-in-white-coat-and-stethoscope-standing-with-arms-crossed-and-looking-at-camera-photo.jpg",
+        }
+    ]
 
     const facilities = [
         "/images/17-compressed.png",

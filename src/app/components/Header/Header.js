@@ -23,6 +23,7 @@ export default function Header() {
 
   const handleLogin = () => { 
     router.push('/components/Login');
+    closeMenu();
   };
 
   return (
@@ -51,36 +52,44 @@ export default function Header() {
           </Link>
 
           <Link
-            href="/about"
-            className={`Header__link ${isActive("/about") ? "Header__link--active" : ""}`}
+            href="/pages/About"
+            className={`Header__link ${isActive("/pages/About") ? "Header__link--active" : ""}`}
             onClick={closeMenu}
           >
             ABOUT
           </Link>
 
           <Link
-            href="/services"
-            className={`Header__link ${isActive("/services") ? "Header__link--active" : ""}`}
+            href="/pages/Service"
+            className={`Header__link ${isActive("/pages/Service") ? "Header__link--active" : ""}`}
             onClick={closeMenu}
           >
             SERVICES
           </Link>
 
           <Link
-            href="/doctors"
-            className={`Header__link ${isActive("/doctors") ? "Header__link--active" : ""}`}
+            href="/pages/Doctors"
+            className={`Header__link ${isActive("/pages/Doctors") ? "Header__link--active" : ""}`}
             onClick={closeMenu}
           >
             OUR DOCTORS
           </Link>
 
           <Link
-            href="/contact"
-            className={`Header__link ${isActive("/contact") ? "Header__link--active" : ""}`}
+            href="/pages/Contact"
+            className={`Header__link ${isActive("/pages/Contact") ? "Header__link--active" : ""}`}
             onClick={closeMenu}
           >
             CONTACT
           </Link>
+
+          {/* Mobile Login Button */}
+          <button 
+            className="Header__mobileLogin btn" 
+            onClick={handleLogin}
+          >
+            Login
+          </button>
         </nav>
 
         {isMenuOpen && (
@@ -91,7 +100,8 @@ export default function Header() {
           />
         )}
 
-        <div className="logout-container">
+        {/* Desktop Login Button */}
+        <div className="Header__desktopLogin">
           <button className="btn" onClick={handleLogin}>Login</button>
         </div>
       </div>
