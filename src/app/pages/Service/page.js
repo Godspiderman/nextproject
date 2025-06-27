@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import "./Service.scss";
 import { MdEmergency } from "react-icons/md";

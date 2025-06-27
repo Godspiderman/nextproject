@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import './Contact.scss';
 import { SiGmail } from "react-icons/si";

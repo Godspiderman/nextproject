@@ -2,8 +2,14 @@
 import React, { useEffect } from 'react';
 import Image from 'next/image';
 import "./About.scss";
+import { useRouter } from 'next/navigation';
+
 
 function HospitalAbout() {
+
+  const router = useRouter();
+
+
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -49,6 +55,10 @@ function HospitalAbout() {
     vision: "To be the leading healthcare provider recognized for outstanding patient care and medical advancements."
   };
 
+  const Book = () => {
+    router.push('/pages/BookConsultation');
+  }
+
   return (
     <div className="hospital-about">
       <div className="about-hero">
@@ -75,7 +85,7 @@ function HospitalAbout() {
             <p className="section-description">{hospitalInfo.description}</p>
             <p className="established-text">Established in {hospitalInfo.established}</p>
           </div>
-          
+
           <div className="stats-grid">
             {hospitalInfo.stats.map((stat, index) => (
               <div key={index} className="stat-card">
@@ -126,7 +136,7 @@ function HospitalAbout() {
           <h2 className="cta-title">Experience Our Care</h2>
           <p className="cta-text">Schedule an appointment or tour our facilities today</p>
           <div className="cta-buttons">
-            <button className="primary-cta">Book Appointment</button>
+            <button className="primary-cta" onClick={Book}>Book Appointment</button>
             <button className="secondary-cta">Take a Virtual Tour</button>
           </div>
         </section>

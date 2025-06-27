@@ -1,8 +1,12 @@
+"use client";
 import React from 'react';
 import Image from 'next/image';
 import "./Doctors.scss";
+import { useRouter } from 'next/navigation';
+
 
 function DoctorsPage() {
+  const router = useRouter();
   const doctors = [
     {
       id: 1,
@@ -78,17 +82,25 @@ function DoctorsPage() {
     }
   ];
 
+  const Book = () => {
+    router.push('/pages/BookConsultation');
+  }
+
+   const ViewDoctor = () => {
+    router.push('/pages/Doctors/DoctorView');
+  }
+
   return (
     <div className='doctors-page'>
       <h1 className='page-title empty-class'>Our Specialist Doctors</h1>
       <p className='page-description empty-class'>
         Meet our team of highly qualified and experienced medical professionals dedicated to your health.
       </p>
-      
+
       <div className='search-filter'>
-        <input 
-          type='text' 
-          placeholder='Search doctors...' 
+        <input
+          type='text'
+          placeholder='Search doctors...'
           className='search-input empty-class'
         />
         <select className='specialization-filter empty-class'>
@@ -101,7 +113,7 @@ function DoctorsPage() {
           <option value='Oncologist'>Oncologist</option>
         </select>
       </div>
-      
+
       <div className='doctors-grid'>
         {doctors.map(doctor => (
           <div key={doctor.id} className='doctor-card'>
@@ -117,23 +129,23 @@ function DoctorsPage() {
                 ⭐ {doctor.rating}
               </div>
             </div>
-            
+
             <div className='doctor-details'>
               <h2 className='doctor-name empty-class'>{doctor.name}</h2>
               <h3 className='doctor-specialization empty-class'>{doctor.specialization}</h3>
-              
+
               <div className='doctor-info'>
                 <p className='empty-class'><strong>Experience:</strong> {doctor.experience}</p>
                 <p className='empty-class'><strong>Education:</strong> {doctor.education}</p>
                 <p className='empty-class'><strong>Schedule:</strong> {doctor.schedule}</p>
                 <p className='empty-class'><strong>Languages:</strong> {doctor.languages.join(', ')}</p>
               </div>
-              
+
               <p className='doctor-bio empty-class'>{doctor.bio}</p>
-              
+
               <div className='doctor-actions'>
-                <button className='btn-book'>Book Appointment</button>
-                <button className='btn-profile'>View Profile</button>
+                <button className='btn-book' onClick={Book} >Book Appointment</button>
+                <button className='btn-profile' onClick={ViewDoctor}>View Profile</button>
               </div>
             </div>
           </div>

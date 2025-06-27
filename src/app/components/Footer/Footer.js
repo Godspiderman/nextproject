@@ -9,10 +9,10 @@ export default function Footer() {
         <h1 className="logo h1">LOGO</h1>
         <nav className="navLinks">
           <Link href="/">Home</Link>
-          <Link href="/about">About Us</Link>
-          <Link href="/services">Our Services</Link>
-          <Link href="/doctors">Our Doctors</Link>
-          <Link href="/contact">Contact Us</Link>
+          <Link href="/pages/About">About Us</Link>
+          <Link href="/pages/Service">Our Services</Link>
+          <Link href="/pages/Doctors">Our Doctors</Link>
+          <Link href="/pages/Contact">Contact Us</Link>
         </nav>
         <div className="socialLinks">
           <Link href="#">Facebook</Link>

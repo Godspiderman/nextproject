@@ -1,0 +1,357 @@
+.doctor-view {
+  width: 85%;
+  margin: 0 auto;
+  margin-top: 80px;
+  padding: 2rem;
+  color: #333;
+
+
+   .back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: transparent;
+    border: none;
+    color: var(--primary-color);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: rgba(74, 144, 226, 0.1);
+      transform: translateX(-3px);
+    }
+
+    &:active {
+      transform: translateX(0);
+    }
+  }
+
+  &__header {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+  }
+
+  &__image {
+    .profile-image {
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &__info {
+    flex: 1;
+
+    .doctor-name {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+
+    .doctor-specialty {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    .doctor-meta {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+
+      .experience {
+        color: #555;
+      }
+
+      .rating {
+        color: #ff9800;
+        font-weight: 500;
+      }
+    }
+
+    .doctor-education,
+    .doctor-languages,
+    .consultation-fee {
+      margin-bottom: 1.5rem;
+
+      h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+        color: #444;
+      }
+
+      p {
+        color: #555;
+      }
+    }
+
+    .language-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+
+      .language-tag {
+        background-color: #f0f7ff;
+        color: var(--primary-color);
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+      }
+    }
+
+    .fee {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--secondary-color);
+    }
+
+    .book-btn {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 1rem;
+
+      &:hover {
+        background-color: var(--primary-color);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+
+  &__content {
+    section {
+      margin-bottom: 3rem;
+
+      h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        color: var(--primary-color);
+        position: relative;
+        padding-bottom: 0.5rem;
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 50px;
+          height: 3px;
+          background-color: var(--secondary-color);
+        }
+      }
+    }
+
+    .services-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+
+      .service-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.8rem;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+
+        .service-icon {
+          color: var(--secondary-color);
+          font-weight: bold;
+        }
+
+        &:hover {
+          background-color: #f0f7ff;
+          transform: translateX(5px);
+        }
+      }
+    }
+
+    .availability-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+
+      .availability-item {
+        padding: 0.8rem;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        position: relative;
+        padding-left: 2rem;
+
+        &::before {
+          content: '•';
+          color: var(--secondary-color);
+          position: absolute;
+          left: 1rem;
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    .review-card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+      margin-bottom: 1.5rem;
+
+      .review-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+
+        .reviewer-name {
+          font-weight: 600;
+        }
+
+        .review-rating {
+          color: #ff9800;
+        }
+      }
+
+      .review-text {
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+      }
+
+      .review-date {
+        font-size: 0.85rem;
+        color: #888;
+      }
+    }
+
+    .view-all-reviews {
+      background: none;
+      border: 1px solid var(--primary-color);
+      color: var(--primary-color);
+      padding: 0.6rem 1.5rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: var(--primary-color);
+        color: white;
+      }
+    }
+  }
+
+  // Mobile (320px - 480px)
+  @media (max-width: 480px) {
+    width: 95%;
+    padding: 1rem;
+    margin-top: 60px;
+
+    &__header {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    &__image {
+      text-align: center;
+
+      .profile-image {
+        width: 200px;
+        height: 200px;
+      }
+    }
+
+    .doctor-name {
+      font-size: 1.8rem !important;
+      text-align: center;
+    }
+
+    .doctor-specialty {
+      text-align: center;
+    }
+
+    .doctor-meta {
+      justify-content: center;
+    }
+
+    .book-btn {
+      width: 100%;
+    }
+
+    .services-list {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  // Tablet (481px - 768px)
+  @media (min-width: 481px) and (max-width: 768px) {
+    width: 90%;
+
+    &__header {
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    &__image {
+      text-align: center;
+
+      .profile-image {
+        width: 250px;
+        height: 250px;
+      }
+    }
+
+    .doctor-name,
+    .doctor-specialty {
+      text-align: center;
+    }
+
+    .doctor-meta {
+      justify-content: center;
+    }
+
+    .services-list {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+
+  // Laptop (769px - 1024px)
+  @media (min-width: 769px) and (max-width: 1024px) {
+    width: 90%;
+
+    &__header {
+      gap: 2rem;
+    }
+
+    &__image {
+      .profile-image {
+        width: 250px;
+        height: 250px;
+      }
+    }
+  }
+
+  // Desktop (1025px - 1440px)
+  @media (min-width: 1025px) and (max-width: 1440px) {
+    width: 85%;
+  }
+
+  // Large Desktop (1441px+)
+  @media (min-width: 1441px) {
+    width: 85%;
+  }
+}
