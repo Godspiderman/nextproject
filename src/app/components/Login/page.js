@@ -111,7 +111,7 @@ const Login = () => {
             <div className='login-form-head'>
               <h2 className="h2">Welcome To <span className='log-title'>Website</span> !</h2>
               <p className='link p'>
-                Don't have an account? <Link href='/signup'>Sign up</Link>
+                Don't have account? <Link href='/components/Signup'>Sign up </Link>{' '}
               </p>
             </div>
             

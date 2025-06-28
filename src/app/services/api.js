@@ -27,3 +27,42 @@ export const loginUser = async (credentials) => {
     return null;
   }
 };
+
+
+// Signup //
+
+
+export const createUser = async (userData) => {
+  try {
+    console.log(userData);
+    const response = await api.post('/api/public/v1/user', userData);
+    return response.data;
+  } catch (error) {
+    console.error('Error creating user:', error.response?.data || error.message);
+    throw error;
+  }
+};
+
+// Countries //
+
+export const getAllCountries = async () => {
+  try {
+    const response = await api.get('/api/public/v1/country');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching countries:', error.response?.data || error.message);
+    throw error;
+  }
+};
+
+// States //
+
+export const getAllStates = async () => {
+  try {
+    const response = await api.get('/api/public/v1/state');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching states:', error.response?.data || error.message);
+    throw error;
+  }
+};

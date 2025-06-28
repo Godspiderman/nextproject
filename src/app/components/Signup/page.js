@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Signup.scss";
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import Image from "next/image";
+import { createUser, getAllCountries, getAllStates } from "@/app/services/api";
 
 const Signup = () => {
   const router = useRouter();
@@ -15,29 +16,61 @@ const Signup = () => {
     email: "",
     phone: "",
     passwordHash: "",
-    confirmPassword: "",
     dateOfBirth: "",
-    gender: "Male",
+    gender: "",
     address: "",
     city: "",
     stateId: 0,
     zipCode: "",
     countryId: 0,
-    imageUrl: null
+    imageUrl: ""
   });
 
+  const [countries, setCountries] = useState([]);
+  const [states, setStates] = useState([]);
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  useEffect(() => {
+    // Fetch countries on component mount
+    const fetchCountries = async () => {
+      try {
+        const countriesData = await getAllCountries();
+        setCountries(countriesData);
+      } catch (error) {
+        console.error("Failed to fetch countries:", error);
+      }
+    };
+
+    fetchCountries();
+  }, []);
+
+  useEffect(() => {
+    // Fetch states when country changes
+    const fetchStates = async () => {
+      if (formData.countryId > 0) {
+        try {
+          const statesData = await getAllStates();
+          setStates(statesData);
+        } catch (error) {
+          console.error("Failed to fetch states:", error);
+        }
+      } else {
+        setStates([]);
+      }
+    };
+
+    fetchStates();
+  }, [formData.countryId]);
 
   const validateForm = () => {
     const newErrors = {};
-    
+
     if (!formData.firstName.trim()) newErrors.firstName = "First name is required.";
     if (!formData.lastName.trim()) newErrors.lastName = "Last name is required.";
-    
+
     if (!formData.email.trim()) {
       newErrors.email = "Email is required.";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
@@ -56,12 +89,6 @@ const Signup = () => {
       newErrors.passwordHash = "Password must be at least 6 characters.";
     } else if (formData.passwordHash.length > 15) {
       newErrors.passwordHash = "Password must be no longer than 15 characters.";
-    }
-
-    if (!formData.confirmPassword.trim()) {
-      newErrors.confirmPassword = "Confirm password is required.";
-    } else if (formData.passwordHash !== formData.confirmPassword) {
-      newErrors.confirmPassword = "Passwords do not match.";
     }
 
     if (!formData.dateOfBirth) {
@@ -94,51 +121,66 @@ const Signup = () => {
     e.preventDefault();
     if (!validateForm()) return;
 
+    // Additional validation for numeric fields
+    if (isNaN(formData.zipCode)) {
+      setErrors(prev => ({ ...prev, zipCode: "Zip code must be a number" }));
+      return;
+    }
+
     const payload = {
-      ...formData,
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      passwordHash: formData.passwordHash,
+      phone: formData.phone,
+      dateOfBirth: formData.dateOfBirth,
+      gender: formData.gender,
+      address: formData.address,
+      city: formData.city,
+      zipCode: parseInt(formData.zipCode, 10), // Using parseInt with radix 10
+      stateId: parseInt(formData.stateId, 10),
+      countryId: parseInt(formData.countryId, 10),
+      imageUrl: formData.imageUrl || "",
       activeStatus: true,
-      roleId: 3,
-      userId: 0,
-      uniqueStringId: "",
-      createdDate: new Date().toISOString(),
-      modifiedDate: new Date().toISOString()
+      roleId: 6,
+      userId: null,
+      uniqueStringId: null
     };
+
+    console.log(payload);
 
     try {
       setLoading(true);
-      console.log("Submitting:", payload);
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      await createUser(payload);
       setLoading(false);
       setSuccessMessage("Registration successful! You can now login.");
-      
+
+      // Reset form
       setFormData({
         firstName: "",
         lastName: "",
         email: "",
         phone: "",
         passwordHash: "",
-        confirmPassword: "",
         dateOfBirth: "",
-        gender: "Male",
+        gender: "",
         address: "",
         city: "",
         stateId: 0,
+        roleId: 6,
         zipCode: "",
         countryId: 0,
         imageUrl: ""
       });
 
       setTimeout(() => {
-        router.push('/login');
+        router.push('/components/Login');
       }, 2000);
-      
+
     } catch (error) {
       setLoading(false);
       console.error("Registration error:", error);
-      setErrors({ form: "Registration failed. Please try again." });
+      setErrors({ form: error.response?.data?.message || "Registration failed. Please try again." });
     }
   };
 
@@ -247,6 +289,7 @@ const Signup = () => {
                   onChange={handleChange}
                   className={`input ${errors.gender ? "input-error" : ""}`}
                 >
+                  <option value="">Select</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                   <option value="Other">Other</option>
@@ -280,7 +323,7 @@ const Signup = () => {
               <div className="signup-form1">
                 <label>Zip Code*</label>
                 <input
-                  type="text"
+                  type="number"
                   name="zipCode"
                   value={formData.zipCode}
                   onChange={handleChange}
@@ -298,9 +341,11 @@ const Signup = () => {
                   className={`input ${errors.countryId ? "input-error" : ""}`}
                 >
                   <option value="0">Select Country</option>
-                  <option value="1">United States</option>
-                  <option value="2">Canada</option>
-                  <option value="3">United Kingdom</option>
+                  {countries.map(country => (
+                    <option key={country.countryId} value={country.countryId}>
+                      {country.name}
+                    </option>
+                  ))}
                 </select>
                 {errors.countryId && <p className="error-message p">{errors.countryId}</p>}
               </div>
@@ -312,11 +357,14 @@ const Signup = () => {
                   value={formData.stateId}
                   onChange={handleChange}
                   className={`input ${errors.stateId ? "input-error" : ""}`}
+                  disabled={!formData.countryId || formData.countryId === 0}
                 >
                   <option value="0">Select State</option>
-                  <option value="1">California</option>
-                  <option value="2">New York</option>
-                  <option value="3">Texas</option>
+                  {states.map(state => (
+                    <option key={state.stateId} value={state.stateId}>
+                      {state.name}
+                    </option>
+                  ))}
                 </select>
                 {errors.stateId && <p className="error-message p">{errors.stateId}</p>}
               </div>
@@ -326,7 +374,7 @@ const Signup = () => {
                   {loading ? "Signing Up..." : "Sign Up"}
                 </button>
                 <p className="p">
-                  Already have an account? <Link href="/components/Login" className="link">Login</Link>
+                  Already have an account? <Link href="/login" className="link">Login</Link>
                 </p>
               </div>
             </form>
