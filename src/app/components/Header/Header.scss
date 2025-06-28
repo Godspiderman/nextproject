@@ -1,12 +1,17 @@
 // Variables
 $primary-color: var(--primary-color);
-$primary-hover: var( --secondary-color);
+$primary-hover: var(--secondary-color);
 $text-color: #333;
 $white: #ffffff;
+$light-gray: #f5f5f5;
+$medium-gray: #e0e0e0;
 $shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 $transition: all 0.3s ease;
 $overlay-color: rgba(0, 0, 0, 0.5);
 $mobile-nav-width: 280px;
+$tablet-breakpoint: 768px;
+$laptop-breakpoint: 1024px;
+$desktop-breakpoint: 1440px;
 
 .Header {
   position: fixed;
@@ -24,7 +29,6 @@ $mobile-nav-width: 280px;
     align-items: center;
     width: 90%;
     margin: 0 auto;
-    max-width: 1200px;
     position: relative;
   }
 
@@ -34,6 +38,7 @@ $mobile-nav-width: 280px;
     color: $text-color;
     text-decoration: none;
     transition: color $transition;
+    z-index: 1001;
 
     &:hover {
       color: $primary-color;
@@ -68,7 +73,6 @@ $mobile-nav-width: 280px;
     &:hover {
       color: $primary-color;
       font-weight: 600;
-
     }
 
     &--active {
@@ -112,8 +116,67 @@ $mobile-nav-width: 280px;
     }
   }
 
+  // User Profile Styles
+  .user-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: opacity $transition;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    .user-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid $medium-gray;
+    }
+
+    .user-info {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+
+      .username {
+        font-weight: 600;
+        color: $text-color;
+      }
+
+      .role {
+        font-size: 0.75rem;
+        color: lighten($text-color, 20%);
+      }
+    }
+
+    &--mobile {
+      display: none;
+      width: 100%;
+      padding: 1rem 0;
+      border-bottom: 1px solid $medium-gray;
+      margin-bottom: 1rem;
+
+      .user-avatar {
+        width: 48px;
+        height: 48px;
+      }
+
+      .user-info {
+        .username {
+          font-size: 1.1rem;
+        }
+        .role {
+          font-size: 0.85rem;
+        }
+      }
+    }
+  }
+
   // Mobile (320px - 767px)
-  @media (max-width: 767px) {
+  @media (max-width: #{$tablet-breakpoint - 1}) {
     padding: 0.8rem 0;
 
     &__container {
@@ -135,7 +198,7 @@ $mobile-nav-width: 280px;
       background-color: $white;
       flex-direction: column;
       align-items: flex-start;
-      padding: 5rem 1.5rem;
+      padding: 5rem 1.5rem 1.5rem;
       box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
       transform: translateX(-100%);
       transition: transform $transition;
@@ -150,7 +213,7 @@ $mobile-nav-width: 280px;
       padding: 0.75rem 0;
       font-size: 1rem;
       width: 100%;
-      border-bottom: 1px solid #f0f0f0;
+      border-bottom: 1px solid $light-gray;
 
       &--active {
         border-bottom: 2px solid $primary-color;
@@ -174,10 +237,20 @@ $mobile-nav-width: 280px;
         display: none;
       }
     }
+
+    .user-profile {
+      &--desktop {
+        display: none;
+      }
+
+      &--mobile {
+        display: flex;
+      }
+    }
   }
 
   // Tablet (768px - 1023px)
-  @media (min-width: 768px) and (max-width: 1023px) {
+  @media (min-width: $tablet-breakpoint) and (max-width: #{$laptop-breakpoint - 1}) {
     padding: 1.2rem 0;
 
     &__container {
@@ -203,10 +276,26 @@ $mobile-nav-width: 280px;
         font-size: 0.9rem;
       }
     }
+
+    .user-profile {
+      .user-avatar {
+        width: 32px;
+        height: 32px;
+      }
+
+      .user-info {
+        .username {
+          font-size: 0.9rem;
+        }
+        .role {
+          font-size: 0.7rem;
+        }
+      }
+    }
   }
 
   // Laptop (1024px - 1439px)
-  @media (min-width: 1024px) and (max-width: 1439px) {
+  @media (min-width: $laptop-breakpoint) and (max-width: #{$desktop-breakpoint - 1}) {
     padding: 1.3rem 0;
 
     &__container {
@@ -230,10 +319,26 @@ $mobile-nav-width: 280px;
         margin-left: 2rem;
       }
     }
+
+    .user-profile {
+      .user-avatar {
+        width: 36px;
+        height: 36px;
+      }
+
+      .user-info {
+        .username {
+          font-size: 1rem;
+        }
+        .role {
+          font-size: 0.75rem;
+        }
+      }
+    }
   }
 
   // Desktop (1440px and up)
-  @media (min-width: 1440px) {
+  @media (min-width: $desktop-breakpoint) {
     padding: 1.5rem 0;
 
     &__container {
@@ -257,6 +362,22 @@ $mobile-nav-width: 280px;
         margin-left: 2.5rem;
         padding: 0.6rem 1.2rem;
         font-size: 1rem;
+      }
+    }
+
+    .user-profile {
+      .user-avatar {
+        width: 40px;
+        height: 40px;
+      }
+
+      .user-info {
+        .username {
+          font-size: 1.05rem;
+        }
+        .role {
+          font-size: 0.8rem;
+        }
       }
     }
   }

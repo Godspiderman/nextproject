@@ -1,15 +1,46 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { HiMenu, HiX } from "react-icons/hi";
 import "./Header.scss";
 import { useRouter } from 'next/navigation';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../../redux/slices/authSlice';
+import { selectIsAuthenticated, selectCurrentUser } from '../../redux/slices/authSlice';
+import Image from 'next/image';
 
 export default function Header() {
+  const defaultAvatar = "/images/ai-generative-portrait-of-confident-male-doctor-in-white-coat-and-stethoscope-standing-with-arms-crossed-and-looking-at-camera-photo.jpg";
+
   const router = useRouter();
+  const dispatch = useDispatch();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const [isClient, setIsClient] = useState(false);
+
+  // Initialize with safe defaults
+  const [authState, setAuthState] = useState({
+    isAuthenticated: false,
+    currentUser: null
+  });
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Sync with Redux only on client
+  const reduxIsAuthenticated = useSelector(selectIsAuthenticated);
+  const reduxCurrentUser = useSelector(selectCurrentUser);
+
+  useEffect(() => {
+    if (isClient) {
+      setAuthState({
+        isAuthenticated: reduxIsAuthenticated,
+        currentUser: reduxCurrentUser
+      });
+    }
+  }, [isClient, reduxIsAuthenticated, reduxCurrentUser]);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
@@ -21,8 +52,18 @@ export default function Header() {
     return pathname.startsWith(href);
   };
 
-  const handleLogin = () => { 
-    router.push('/components/Login');
+  const handleAuthAction = () => {
+    if (authState.isAuthenticated) {
+      dispatch(logout());
+      router.push('/');
+    } else {
+      router.push('/components/Login');
+    }
+    closeMenu();
+  };
+
+  const handleProfile = () => {
+    router.push('/profile');
     closeMenu();
   };
 
@@ -32,6 +73,8 @@ export default function Header() {
         <Link href="/" className="Header__logo h1">
           Logo
         </Link>
+
+
 
         <button
           className="Header__menuButton"
@@ -43,6 +86,25 @@ export default function Header() {
         </button>
 
         <nav className={`Header__nav ${isMenuOpen ? "Header__nav--open" : ""}`}>
+          {isClient && authState.isAuthenticated && (
+            <div className="user-profile user-profile--mobile">
+              <span className="helloText">
+                <Image
+                  src={authState.currentUser?.avatar || defaultAvatar}
+                  alt="User profile"
+                  className="user-avatar"
+                  width={60}
+                  height={60}
+                  priority={false}
+                />
+              </span>
+              <div className="user-info">
+                <span className="username p">{authState.currentUser?.userName}</span>
+                <span className="role p">{authState.currentUser?.role || 'User'}</span>
+              </div>
+            </div>
+          )}
+
           <Link
             href="/"
             className={`Header__link ${isActive("/") ? "Header__link--active" : ""}`}
@@ -83,12 +145,11 @@ export default function Header() {
             CONTACT
           </Link>
 
-          {/* Single Login Button - shown only in mobile nav */}
-          <button 
-            className="Header__loginBtn Header__loginBtn--mobile" 
-            onClick={handleLogin}
+          <button
+            className="Header__loginBtn Header__loginBtn--mobile"
+            onClick={handleAuthAction}
           >
-            Login
+            {authState.isAuthenticated ? 'Logout' : 'Login'}
           </button>
         </nav>
 
@@ -100,13 +161,36 @@ export default function Header() {
           />
         )}
 
-        {/* Single Login Button - shown only on desktop */}
-        <button 
-          className="Header__loginBtn Header__loginBtn--desktop" 
-          onClick={handleLogin}
-        >
-          Login
-        </button>
+       {isClient && (
+  <div className="user-profile user-profile--desktop">
+    {authState.isAuthenticated ? (
+      <>
+        <span className="helloText">
+          <Image
+            src={authState.currentUser?.avatar || defaultAvatar}
+            alt="User profile"
+            className="user-avatar"
+            width={40}
+            height={40}
+            priority={false}
+          />
+        </span>
+        <div className="user-info">
+          <span className="username p">{authState.currentUser?.userName}</span>
+          <span className="role p">{authState.currentUser?.roleName || 'User'}</span>
+        </div>
+      </>
+    ) : null}
+    <button
+      className="Header__loginBtn Header__loginBtn--desktop"
+      onClick={handleAuthAction}
+    >
+      {authState.isAuthenticated ? 'Logout' : 'Login'}
+    </button>
+  </div>
+)}
+
+
       </div>
     </header>
   );

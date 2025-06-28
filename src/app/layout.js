@@ -2,6 +2,7 @@ import { Open_Sans } from "next/font/google";
 import "./styles/globals.scss";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import { Providers } from "./components/Provider/Provider";// Make sure this is the correct import path
 
 const openSans = Open_Sans({
   subsets: ["latin"],
@@ -18,9 +19,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={openSans.variable}>
       <body>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <Providers>
+          <Header />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
