@@ -210,7 +210,7 @@ const Signup = () => {
               </div>
 
               <div className="signup-form1">
-                <label>Last Name*</label>
+                <label>Last Name</label>
                 <input
                   type="text"
                   name="lastName"
@@ -374,7 +374,7 @@ const Signup = () => {
                   {loading ? "Signing Up..." : "Sign Up"}
                 </button>
                 <p className="p">
-                  Already have an account? <Link href="/login" className="link">Login</Link>
+                  Already have an account? <Link href="/components/Login" className="link">Login</Link>
                 </p>
               </div>
             </form>
