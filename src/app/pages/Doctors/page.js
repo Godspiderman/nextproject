@@ -4,7 +4,6 @@ import Image from 'next/image';
 import "./Doctors.scss";
 import { useRouter } from 'next/navigation';
 
-
 function DoctorsPage() {
   const router = useRouter();
   const doctors = [
@@ -14,7 +13,7 @@ function DoctorsPage() {
       specialization: "Cardiologist",
       experience: "12 years",
       education: "MD, Harvard Medical School",
-      image: "/images/image 4.png",
+      image: "/images/ai-generative-portrait-of-confident-male-doctor-in-white-coat-and-stethoscope-standing-with-arms-crossed-and-looking-at-camera-photo.jpg",
       bio: "Specializes in interventional cardiology with expertise in complex coronary interventions.",
       schedule: "Mon-Fri: 9am-5pm",
       rating: 4.9,
@@ -50,7 +49,7 @@ function DoctorsPage() {
       specialization: "Orthopedic Surgeon",
       experience: "18 years",
       education: "MD Orthopedics, Mayo Clinic",
-      image: "/images/istockphoto-488117766-612x612.jpg",
+      image: "/images/Rectangle 27 (1).png",
       bio: "Expert in joint replacements and sports medicine with minimally invasive techniques.",
       schedule: "Wed-Sun: 7am-3pm",
       rating: 4.85,
@@ -86,14 +85,14 @@ function DoctorsPage() {
     router.push('/pages/BookConsultation');
   }
 
-   const ViewDoctor = () => {
+  const ViewDoctor = () => {
     router.push('/pages/Doctors/DoctorView');
   }
 
   return (
     <div className='doctors-page'>
-      <h1 className='page-title empty-class'>Our Specialist Doctors</h1>
-      <p className='page-description empty-class'>
+      <h1 className='page-title'>Our Specialist Doctors</h1>
+      <p className='page-description'>
         Meet our team of highly qualified and experienced medical professionals dedicated to your health.
       </p>
 
@@ -101,9 +100,9 @@ function DoctorsPage() {
         <input
           type='text'
           placeholder='Search doctors...'
-          className='search-input empty-class'
+          className='search-input'
         />
-        <select className='specialization-filter empty-class'>
+        <select className='specialization-filter'>
           <option value=''>All Specializations</option>
           <option value='Cardiologist'>Cardiologist</option>
           <option value='Neurologist'>Neurologist</option>
@@ -125,26 +124,26 @@ function DoctorsPage() {
                 height={300}
                 className='doctor-image'
               />
-              <div className='rating-badge'>
-                ⭐ {doctor.rating}
+              <div className='rating-display'>
+                <span className='star-icon'>⭐</span>
+                <span className='rating-value'>{doctor.rating}</span>
               </div>
             </div>
 
             <div className='doctor-details'>
-              <h2 className='doctor-name empty-class'>{doctor.name}</h2>
-              <h3 className='doctor-specialization empty-class'>{doctor.specialization}</h3>
-
+              <h2 className='doctor-name'>{doctor.name}</h2>
+              <h3 className='doctor-specialization'>{doctor.specialization}</h3>
               <div className='doctor-info'>
-                <p className='empty-class'><strong>Experience:</strong> {doctor.experience}</p>
-                <p className='empty-class'><strong>Education:</strong> {doctor.education}</p>
-                <p className='empty-class'><strong>Schedule:</strong> {doctor.schedule}</p>
-                <p className='empty-class'><strong>Languages:</strong> {doctor.languages.join(', ')}</p>
+                <p><strong>Experience:</strong> {doctor.experience}</p>
+                <p><strong>Education:</strong> {doctor.education}</p>
+                <p><strong>Schedule:</strong> {doctor.schedule}</p>
+                <p><strong>Languages:</strong> {doctor.languages.join(', ')}</p>
               </div>
 
-              <p className='doctor-bio empty-class'>{doctor.bio}</p>
+              <p className='doctor-bio'>{doctor.bio}</p>
 
               <div className='doctor-actions'>
-                <button className='btn-book' onClick={Book} >Book Appointment</button>
+                <button className='btn-book' onClick={Book}>Book Appointment</button>
                 <button className='btn-profile' onClick={ViewDoctor}>View Profile</button>
               </div>
             </div>
